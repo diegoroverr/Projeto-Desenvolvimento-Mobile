@@ -34,7 +34,7 @@ O jogo é um simples aplicativo Android que simula uma jornada onde o usuário p
 
 ## Instalação e Execução
 1. Clone este repositório:
-git clone https://github.com/seu-usuario/my-application.git
+git clone https://github.com/diegoroverr/Projeto-Desenvolvimento-Mobile.git
 2. Abra o projeto no Android Studio.
 3. Adicione suas imagens à pasta res/drawable.
 4. Compile e execute o aplicativo em um emulador ou dispositivo físico.
