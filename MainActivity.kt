@@ -27,6 +27,12 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Se houver um estado salvo, restaura os valores
+        savedInstanceState?.let {
+            clicks = it.getInt("clicks", 0)
+            targetClicks = it.getInt("targetClicks", (1..50).random())
+        }
+
         // Criando o layout principal (vertical, centralizado)
         val mainLayout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -52,7 +58,7 @@ class MainActivity : Activity() {
 
         // Criando o TextView para o contador de cliques
         clickCounterView = TextView(this).apply {
-            text = "Cliques: $clicks" // Inicializa com o número de cliques
+            text = "Cliques: $clicks / $targetClicks" // Inicializa com o número de cliques e o alvo
             textSize = 16f
             gravity = Gravity.CENTER
         }
@@ -62,7 +68,7 @@ class MainActivity : Activity() {
             text = "Avançar"
             setOnClickListener {
                 clicks++ // Incrementa o contador de cliques
-                clickCounterView.text = "Cliques: $clicks" // Atualiza o contador de cliques
+                clickCounterView.text = "Cliques: $clicks / $targetClicks" // Atualiza o contador de cliques
                 when {
                     // Caso tenha completado a jornada
                     clicks >= targetClicks -> {
@@ -143,10 +149,17 @@ class MainActivity : Activity() {
         targetClicks = (1..50).random()
         textView.text = "Clique para avançar na sua jornada!"
         imageView.setImageResource(R.drawable.imagem_inicial) // Imagem inicial
-        clickCounterView.text = "Cliques: $clicks" // Reseta o contador de cliques
+        clickCounterView.text = "Cliques: $clicks / $targetClicks" // Reseta o contador de cliques
         buttonAdvance.visibility = Button.VISIBLE
         buttonGiveUp.visibility = Button.VISIBLE
         buttonYes.visibility = Button.GONE
         buttonNo.visibility = Button.GONE
+    }
+
+    // Salva o estado da atividade
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("clicks", clicks)
+        outState.putInt("targetClicks", targetClicks)
     }
 }
