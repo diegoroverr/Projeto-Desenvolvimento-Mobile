@@ -21,7 +21,7 @@ class MainActivity : Activity() {
 
     // Contador de cliques e o número alvo de cliques para completar a jornada
     private var clicks = 0
-    private var targetClicks = (1..10).random()
+    private var targetClicks = (1..50).random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,7 +130,7 @@ class MainActivity : Activity() {
     // Função para reiniciar o jogo, resetando os valores e visualizações
     private fun resetGame() {
         clicks = 0
-        targetClicks = (1..10).random()
+        targetClicks = (1..50).random()
         textView.text = "Clique para avançar na sua jornada!"
         imageView.setImageResource(R.drawable.imagem_inicial) // Imagem inicial
         buttonAdvance.visibility = Button.VISIBLE
