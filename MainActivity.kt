@@ -19,6 +19,7 @@ class MainActivity : Activity() {
     private lateinit var buttonGiveUp: Button
     private lateinit var buttonYes: Button
     private lateinit var buttonNo: Button
+    private lateinit var buttonRestart: Button // Adicionado: Botão de reinício
 
     // Contador de cliques e o número alvo de cliques para completar a jornada
     private var clicks = 0
@@ -74,6 +75,7 @@ class MainActivity : Activity() {
                     clicks >= targetClicks -> {
                         textView.text = "Parabéns! Você completou a jornada!"
                         imageView.setImageResource(R.drawable.imagem_completa) // Imagem final
+                        showRestartButton() // Exibe o botão de reinício
                     }
                     // Caso esteja quase completando
                     clicks > targetClicks * 0.66 -> {
@@ -122,6 +124,15 @@ class MainActivity : Activity() {
             }
         }
 
+        // Criando o botão "Reiniciar" (para reiniciar o jogo após a conclusão), inicialmente invisível
+        buttonRestart = Button(this).apply {
+            text = "Reiniciar"
+            visibility = Button.GONE
+            setOnClickListener {
+                resetGame() // Reinicia o jogo
+            }
+        }
+
         // Adicionando os elementos ao layout principal
         mainLayout.addView(imageView)
         mainLayout.addView(textView)
@@ -130,6 +141,7 @@ class MainActivity : Activity() {
         mainLayout.addView(buttonGiveUp)
         mainLayout.addView(buttonYes)
         mainLayout.addView(buttonNo)
+        mainLayout.addView(buttonRestart) // Adicionado: Botão de reinício
 
         // Definindo o layout principal como a visualização da atividade
         setContentView(mainLayout)
@@ -143,6 +155,13 @@ class MainActivity : Activity() {
         buttonNo.visibility = Button.VISIBLE
     }
 
+    // Função para exibir o botão de reinício
+    private fun showRestartButton() {
+        buttonAdvance.visibility = Button.GONE
+        buttonGiveUp.visibility = Button.GONE
+        buttonRestart.visibility = Button.VISIBLE
+    }
+
     // Função para reiniciar o jogo, resetando os valores e visualizações
     private fun resetGame() {
         clicks = 0
@@ -154,6 +173,7 @@ class MainActivity : Activity() {
         buttonGiveUp.visibility = Button.VISIBLE
         buttonYes.visibility = Button.GONE
         buttonNo.visibility = Button.GONE
+        buttonRestart.visibility = Button.GONE // Oculta o botão de reinício
     }
 
     // Salva o estado da atividade
