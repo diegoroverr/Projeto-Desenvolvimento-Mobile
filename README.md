@@ -2,9 +2,9 @@
 O jogo é um simples aplicativo Android que simula uma jornada onde o usuário precisa clicar em um botão para avançar até completar a tarefa. O aplicativo foi desenvolvido em Kotlin e utiliza elementos básicos da interface do usuário, como ImageView, TextView, Button, e LinearLayout.
 
 ## Funcionalidades
-**- Progresso da Jornada:** O usuário clica no botão "Avançar" para progredir em sua jornada. O progresso é indicado por diferentes imagens e mensagens.
-**- Sistema de Desistência:** O usuário pode optar por desistir a qualquer momento, o que revelará opções para reiniciar a jornada ou sair do aplicativo.
-**- Reinício do Jogo:** Após desistir, o usuário pode optar por tentar novamente, reiniciando o progresso.
+- **Progresso da Jornada:** O usuário clica no botão "Avançar" para progredir em sua jornada. O progresso é indicado por diferentes imagens e mensagens.
+- **Sistema de Desistência:** O usuário pode optar por desistir a qualquer momento, o que revelará opções para reiniciar a jornada ou sair do aplicativo.
+- **Reinício do Jogo:** Após desistir, o usuário pode optar por tentar novamente, reiniciando o progresso.
 
 ## Estrutura do Projeto
 - **MainActivity:** Esta é a atividade principal onde toda a lógica do aplicativo é implementada.
