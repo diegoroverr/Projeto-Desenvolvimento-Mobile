@@ -14,6 +14,7 @@ class MainActivity : Activity() {
     // Declaração das variáveis para os elementos de interface
     private lateinit var imageView: ImageView
     private lateinit var textView: TextView
+    private lateinit var clickCounterView: TextView // Adicionado: Contador de cliques
     private lateinit var buttonAdvance: Button
     private lateinit var buttonGiveUp: Button
     private lateinit var buttonYes: Button
@@ -49,11 +50,19 @@ class MainActivity : Activity() {
             gravity = Gravity.CENTER
         }
 
+        // Criando o TextView para o contador de cliques
+        clickCounterView = TextView(this).apply {
+            text = "Cliques: $clicks" // Inicializa com o número de cliques
+            textSize = 16f
+            gravity = Gravity.CENTER
+        }
+
         // Criando o botão "Avançar" com lógica para atualizar a jornada
         buttonAdvance = Button(this).apply {
             text = "Avançar"
             setOnClickListener {
                 clicks++ // Incrementa o contador de cliques
+                clickCounterView.text = "Cliques: $clicks" // Atualiza o contador de cliques
                 when {
                     // Caso tenha completado a jornada
                     clicks >= targetClicks -> {
@@ -110,6 +119,7 @@ class MainActivity : Activity() {
         // Adicionando os elementos ao layout principal
         mainLayout.addView(imageView)
         mainLayout.addView(textView)
+        mainLayout.addView(clickCounterView) // Adicionado: Contador de cliques
         mainLayout.addView(buttonAdvance)
         mainLayout.addView(buttonGiveUp)
         mainLayout.addView(buttonYes)
@@ -133,6 +143,7 @@ class MainActivity : Activity() {
         targetClicks = (1..50).random()
         textView.text = "Clique para avançar na sua jornada!"
         imageView.setImageResource(R.drawable.imagem_inicial) // Imagem inicial
+        clickCounterView.text = "Cliques: $clicks" // Reseta o contador de cliques
         buttonAdvance.visibility = Button.VISIBLE
         buttonGiveUp.visibility = Button.VISIBLE
         buttonYes.visibility = Button.GONE
